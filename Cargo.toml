@@ -1,0 +1,10 @@
+[package]
+name = "barcode-scanner-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+criterion = "0.8.2"
+noyalib = "0.0.51"
+opencv = "0.100.1"
+serde = "1.0.229"
