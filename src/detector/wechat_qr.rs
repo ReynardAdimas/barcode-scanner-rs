@@ -2,6 +2,7 @@ use super::{BarcodeDetector, DecodedBarcode};
 use crate::model::ModelPaths; 
 use opencv::core::Mat; 
 use opencv::wechat_qrcode::WeChatQRCode; 
+use opencv::prelude::WeChatQRCodeTrait;
 
 pub struct WeChatDetector {
     inner: WeChatQRCode,

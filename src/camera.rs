@@ -1,4 +1,5 @@
 use opencv::core::Mat; 
+use opencv::prelude::*;
 use opencv::videoio::{self, VideoCaptureTrait}; 
 
 pub struct Camera {
@@ -12,7 +13,7 @@ impl Camera {
         Ok(Self { cap })
     }
 
-    pub fn read_frame(&self) -> Result<Mat, String> {
+    pub fn read_frame(&mut self) -> Result<Option<Mat>, String> {
         let mut frame = Mat::default();
         self.cap.read(&mut frame)
             .map_err(|e| e.to_string())?;

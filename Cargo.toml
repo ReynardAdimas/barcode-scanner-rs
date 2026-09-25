@@ -6,5 +6,5 @@ edition = "2024"
 [dependencies]
 criterion = "0.8.2"
 noyalib = "0.0.51"
-opencv = "0.100.1"
+opencv = { version = "0.100.1", default-features =  false, features = ["imgproc", "imgcodecs", "highgui", "videoio", "objdetect", "barcode", "wechat_qrcode"] }
 serde = "1.0.229"
