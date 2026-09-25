@@ -1,14 +1,15 @@
 pub mod wechat_qr; 
 pub mod standard_qr; 
 
-use opencv::core::Mat;
+pub use wechat_qr::WechatQRDetector; 
 
-pub trait BarcodeDetector {
-    fn detect(&mut self, frame: &Mat) -> Result<Vec<DecodedBarcode>, String>; 
-}
+use opencv::core::Mat; 
 
-#[derive(Debug, Clone)]
 pub struct DecodedBarcode {
     pub data: String, 
-    pub points: Vec<opencv::core::Point>
+    pub points: Vec<(f32, f32)>,
+} 
+
+pub trait BarcodeDetector {
+    fn detect(&self, image: &Mat) -> Result<Vec<DecodedBarcode>, String>;
 }

@@ -1,0 +1,4 @@
+- [ ] Built hybrid pipeline using rxing 
+- [ ] Benchmark standard pipeline
+- [ ] Benchmark hybrid pipeline
+- [ ] Benchmark WeChatQR

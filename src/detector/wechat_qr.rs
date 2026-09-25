@@ -4,7 +4,7 @@ use opencv::core::Mat;
 use opencv::wechat_qrcode::WeChatQRCode; 
 
 pub struct WeChatDetector {
-    inner: WeChatDetector
+    inner: WeChatQRCode,
 } 
 
 impl WeChatDetector {
@@ -27,6 +27,9 @@ impl BarcodeDetector for WeChatDetector {
             .inner
             .detect_and_decode(frame, &mut points)
             .map_err(|e| e.to_string())?;
-        Ok(vec![DecodedBarcode {data, points: vec![]} ])
+        Ok(data 
+            .iter()
+            .map(|d| DecodedBarcode {data: d.to_string(), points: vec![]})
+            .collect())
     }
 }
