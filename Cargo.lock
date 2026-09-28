@@ -144,6 +144,7 @@ name = "barcode-scanner-rs"
 version = "0.1.0"
 dependencies = [
  "criterion",
+ "image",
  "noyalib",
  "opencv",
  "rxing",

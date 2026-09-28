@@ -7,6 +7,8 @@ The standard OpenCV barcode detection pipeline utilizes the `BarcodeDetector` cl
 
 The WeChat QR Code scanner, integrated into OpenCV 4.5.2+ via `opencv_contrib`, uses a Convolutional Neural Network (CNN) architecture comprising two distinct models: an **Object Detection Model** and a **Super Resolution Model**. The detector model first locates the QR code and returns its bounding box. The super-resolution model then enhances the resolution of small or distant QR codes before decoding. This pipeline supports QR codes and Aztec codes, offering superior performance on damaged, low light, or occluded codes compared to traditional methods, though it is computationally intensive. 
 
+## 
+
 ## Comparison of Pipelines 
 
 |Feature | OpenCV Barcode Detector | WeChat QR Code Scanner |
@@ -15,5 +17,8 @@ The WeChat QR Code scanner, integrated into OpenCV 4.5.2+ via `opencv_contrib`, 
 | Supported Formats | EAN-8, EAN-13, UPC-A, UPC-E | QR Code, Aztec Code 
 | Strengths | Fast, lightweight, good for standard retail barcodes | High accuracy on damaged, rotated, or small codes 
 | Performance | Very low latency (ms range) | Higher latncy (30ms-750ms+depending on conditions)
-|Integration | Core `objdetect` module (OpenCV 4.8+) | `opencv_contrib` module 
+|Integration | Core `objdetect` module (OpenCV 4.8+) | `opencv_contrib` module  
+
+
+
 

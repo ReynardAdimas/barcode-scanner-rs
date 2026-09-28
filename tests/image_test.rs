@@ -1,4 +1,4 @@
-use barcode_scanner_rs::detector::{BarcodeDetector, WeChatDetector, StandardQrDetector}; 
+use barcode_scanner_rs::detector::{BarcodeDetector, PipelineDetector, RxingDetector, StandardQrDetector, WeChatDetector}; 
 use barcode_scanner_rs::model::ModelPaths; 
 use opencv::{core::Mat, imgcodecs, prelude::*}; 
 use std::path::PathBuf; 
@@ -36,6 +36,14 @@ fn all_detector() -> Vec<(&'static str, Box<dyn BarcodeDetector>)> {
     (
         "wechat", 
         Box::new(WeChatDetector::new(&paths).expect("Initialization WeChatDetector Failed"))
+    ), 
+    (
+        "hybrid", 
+        Box::new(PipelineDetector::new(vec![
+            Box::new(StandardQrDetector::new().unwrap()), 
+            Box::new(WeChatDetector::new(&paths).unwrap()), 
+            Box::new(RxingDetector::new())
+        ]))
     )
     ]
 } 
