@@ -10,17 +10,11 @@ fn main() -> Result<(), String> {
 
     loop {
         let Some(frame) = cam.read_frame()? else {break}; 
-
-//         let results = detector.detect(&frame); 
-// 
-//         for r in &results {
-//             println!("Decoded: {}", r.data);
-//         } 
             match detector.detect(&frame) {
             Ok(results) => {
                 for r in &results {
                     println!("Decoded: {}", r.data);
-                }
+                }   
             }
             Err(e) => {
                 return Err(e);
