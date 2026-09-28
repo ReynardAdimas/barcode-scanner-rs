@@ -3,8 +3,6 @@ mod standard_qr;
 mod rxing_detector;
 mod pipeline; 
 
-
-
 pub use standard_qr::StandardQrDetector;
 pub use wechat_qr::WeChatDetector;
 pub use rxing_detector::RxingDetector; 

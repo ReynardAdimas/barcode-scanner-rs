@@ -1,0 +1,12 @@
+{
+  "PaddingLeft": 140,
+  "PaddingRight": 140,
+  "PaddingTop": 20,
+  "PaddingBottom": 20,
+  "UpscaleFactor": 3.0,
+  "UseSharpening": true,
+  "SharpenAlpha": 1.5,
+  "SharpenBeta": -0.8,
+  "DetectionGain": 1.8,
+  "EnableOpenCvFallback": true
+}
