@@ -13,6 +13,6 @@ serde = "1.0.229"
 [dev-dependencies]
 criterion = "0.8.2"
 
-[[bench]]
-name = "decoders"
-harness = false
+# [[bench]]
+# name = "decoders"
+# harness = false

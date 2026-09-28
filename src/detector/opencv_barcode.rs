@@ -1,6 +1,6 @@
 use super::{BarcodeDetector, DecodedBarcode}; 
 use crate::utils::cv_err; 
-use opencv::barcode::BarcodeDetector as CvBarcodeDetector; 
+use opencv::objdetect::BarcodeDetector as CvBarcodeDetector;
 use opencv::core::{Mat, Vector}; 
 use opencv::prelude::*; 
 
