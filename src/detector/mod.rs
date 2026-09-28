@@ -5,7 +5,6 @@ mod pipeline;
 mod opencv_barcode;
 mod preprocessed;
 
-use std::path;
 
 pub use standard_qr::StandardQrDetector;
 pub use wechat_qr::WeChatDetector;

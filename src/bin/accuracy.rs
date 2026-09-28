@@ -53,12 +53,12 @@ fn main() -> Result<(), String> {
     let mut preview: BTreeMap<(String, String), String> = BTreeMap::new(); 
 
     for kind in PreprocessKind::ALL {
-        let mut pre = Preprocessor::new(kind); 
+        let mut pre = Preprocessor::new(kind)?; 
         for case in &cases {
-            let img = pre?.run(&case.img)?; 
-            for(name, dst) in dets.iter_mut() {
+            let img = pre.run(&case.img)?; 
+            for(name, det) in dets.iter_mut() {
                 let t0 = Instant::now();
-                let res = dets.detect(&img);
+                let res = det.detect(&img);
                 let dt = t0.elapsed().as_secs_f64() * 1000.0; 
 
                 let st = stats.entry((kind.label().to_string(), name.to_string())).or_default();
@@ -87,7 +87,7 @@ fn main() -> Result<(), String> {
                 }; 
 
                 if kind == PreprocessKind::Raw && case.condition == "clean" {
-                    coverage.insert((kind.label().to_string(), name.to_string()), verdict); 
+                    coverage.insert((case.folder.clone(), name.to_string()), verdict); 
                     if let Ok(r) = &res {
                         if let Some(first) = r.first() {
                             preview.insert((case.folder.clone(), name.to_string()), first.data.clone());
