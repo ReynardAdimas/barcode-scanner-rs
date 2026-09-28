@@ -4,9 +4,15 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-criterion = "0.8.2"
 image = "0.25"
 noyalib = "0.0.51"
 opencv = { version = "0.100.1", default-features =  false, features = ["imgproc", "imgcodecs", "highgui", "videoio", "objdetect", "barcode", "wechat_qrcode"] }
 rxing = "0.9.3"
 serde = "1.0.229"
+
+[dev-dependencies]
+criterion = "0.8.2"
+
+[[bench]]
+name = "decoders"
+harness = false
