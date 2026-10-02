@@ -2,9 +2,6 @@ use super::{BarcodeDetector, DecodedBarcode};
 use opencv::core::Mat; 
 use opencv::objdetect::QRCodeDetector;
 use opencv::prelude::*;
-
-
-
 pub struct StandardQrDetector {
     inner: QRCodeDetector,
 } 

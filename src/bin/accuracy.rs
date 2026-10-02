@@ -98,21 +98,50 @@ fn main() -> Result<(), String> {
         }
     }
 
-    println!("\nCoverage Matrix "); 
-    print!("{:<14}", "folder"); 
-    for n in &det_names {
-        print!("{:<10}", n);
-    }
-    println!();
-    let mut folders: Vec<&String> = coverage.keys().map(|(f, _)| f).collect(); 
-    folders.dedup();
-    for f in &folders {
-        print!("{:<14}", f); 
-        for n in &det_names {
-            let v = coverage.get(&((*f).clone(), n.to_string())).copied().unwrap_or("-"); 
-            print!("{:<10}", v);
-        }
-        println!();
+    // println!("\nCoverage Matrix "); 
+    // print!("{:<14}", "folder"); 
+    // for n in &det_names {
+    //     print!("{:<10}", n);
+    // }
+    // println!();
+    // let mut folders: Vec<&String> = coverage.keys().map(|(f, _)| f).collect(); 
+    // folders.dedup();
+    // for f in &folders {
+    //     print!("{:<14}", f); 
+    //     for n in &det_names {
+    //         let v = coverage.get(&((*f).clone(), n.to_string())).copied().unwrap_or("-"); 
+    //         print!("{:<10}", v);
+    //     }
+    //     println!();
+    // }
+
+    // println!("Read the Value");
+    // for((folder, det), text) in &preview {
+    //     println!("{folder:<14} {det:<10} {text}");
+    // } 
+
+    println!("\n== Ringkasan (semua kondisi) ==");
+    println!("{:<16} {:<10} {:>4} {:>6} {:>6} {:>6} {:>6} {:>9} {:>9}","preprocess", "decoder", "n", "ok%", "miss%", "err%", "wrong%", "p50(ms)", "p95(ms)");
+    // for ((pre, det), st) in stats.iter_mut() {
+    //     st.ms.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    //     let p = |x: usize| 100.0 * x as f64 / st.n as f64;
+    //     println!("{:<16} {:<10} {:>4} {:>5.1}% {:>5.1}% {:>5.1}% {:>5.1}% {:>9.2} {:>9.2}",
+    //         pre, det, st.n, p(st.ok), p(st.miss), p(st.err), p(st.wrong),
+    //         percentile(&st.ms, 0.5), percentile(&st.ms, 0.95));
+    // } 
+    let mut rows: Vec<(&(String, String), &mut Stat)> = stats.iter_mut().collect(); 
+    rows.sort_by(|a, b| {
+        let pass_a = a.1.ok as f64 / a.1.n as f64;
+        let pass_b = b.1.ok as f64 / b.1.n as f64;
+        pass_b.partial_cmp(&pass_a).unwrap()
+    }); 
+
+    for ((pre, det), st) in rows {
+        st.ms.sort_by(|a,b| a.partial_cmp(b).unwrap());
+        let p = |x:usize| 100.0 * x as f64 / st.n as f64; 
+        println!("{:<16} {:<10} {:>4} {:>5.1}% {:>5.1}% {:>5.1}% {:>5.1}% {:>9.2} {:>9.2}",
+        pre, det, st.n, p(st.ok), p(st.miss), p(st.err), p(st.wrong),
+        percentile(&st.ms, 0.5), percentile(&st.ms, 0.95));
     }
     Ok(())
 }
